@@ -1,0 +1,124 @@
+
+<div class="m-0 bg-slate-800" >
+  <h2 class="px-10 py-4 text-cyan-50">SOFR Index</h2>
+  <div class="px-8 py-2">
+	  <canvasjs-chart  [options]="chartOptions3" [styles]="{width: '100%', height:'260px'}" (chartInstance)="getChart3Instance($event)"></canvasjs-chart>
+  </div>
+</div>
+<!-- <div class="flex justify-items-center list-none px-10 py-5" >
+  <div class="p-2 text-cyan-50 "><li>Date : {{date}}</li></div>
+  <div><li>{{avg_30}}</li></div>
+  <div><li>{{avg_90}}</li></div>
+  <div><li>{{avg_180}}</li></div>
+  <div><li>{{sofr_index_rate}}</li></div>
+</div> -->
+
+
+
+
+<div class="relative overflow-x-auto px-9 py-6">
+  <h3 class=" text-cyan-50">Latest data</h3>
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+              <th scope="col" class="px-6 py-3">
+                 Date
+              </th>
+              <th scope="col" class="px-6 py-3">
+                  Average 30
+              </th>
+              <th scope="col" class="px-6 py-3">
+                  Average 90
+              </th>
+              <th scope="col" class="px-6 py-3">
+                  Average 180
+              </th>
+              <th scope="col" class="px-6 py-3">
+                  SOFR rate
+            </th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {{date}}
+              </th>
+              <td class="px-6 py-4">
+                  {{avg_30}}
+              </td>
+              <td class="px-6 py-4">
+                  {{avg_90}}
+              </td>
+              <td class="px-6 py-4">
+                  {{avg_180}}
+              </td>
+              <td class="px-6 py-4">
+                {{sofr_index_rate}}
+            </td>
+          </tr>
+      </tbody>
+  </table>
+</div>
+
+
+
+
+
+<div class="bg-slate-800">
+    <div class="example-container mat-elevation-z8 p-3">
+        
+        <div class="bg-slate-800 p-10">
+          <div fxLayout fxLayoutAlign="center center">
+            <mat-form-field fxFlex="40%">
+              <input matInput type="text" search (keyup)="doFilter($event)" placeholder="Filter">
+            </mat-form-field>
+          </div>
+            <mat-table #table [dataSource]="dataSource">
+
+              <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+
+              <!-- Position Column -->
+              <ng-container matColumnDef="Date">
+                <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="Rate type">
+                <mat-header-cell *matHeaderCellDef> Rate type </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.rate_type}} </mat-cell>
+              </ng-container>
+
+              <!-- Weight Column -->
+              <ng-container matColumnDef="Average 30">
+                <mat-header-cell *matHeaderCellDef> Average 30 </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.avg_30}} </mat-cell>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="Average 90">
+                <mat-header-cell *matHeaderCellDef>Average 90</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.avg_90}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="Average 180">
+                <mat-header-cell *matHeaderCellDef> Average 180 </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.avg_180}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="Index value">
+                <mat-header-cell *matHeaderCellDef> Index value </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.sofr_index}} </mat-cell>
+              </ng-container>
+
+              <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+          <mat-paginator [pageSizeOptions]="[5,25,100]" showFirstLastButtons></mat-paginator>
+        </div>
+        
+    </div>
+</div>
+
+

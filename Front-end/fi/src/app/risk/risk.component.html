@@ -1,0 +1,103 @@
+
+<div class="bg-slate-800 text-sm">
+    <div class="example-container mat-elevation-z8 p-6">
+        
+        <div class="bg-slate-800 ">
+          <div fxLayout fxLayoutAlign="center center">
+            <mat-form-field fxFlex="40%">
+              <input matInput type="text" search (keyup)="doFilter($event)" placeholder="Filter">
+            </mat-form-field>
+          </div>
+          
+            <mat-table #table [dataSource]="dataSource">
+
+              <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+
+              <!-- Position Column -->
+              <ng-container matColumnDef="Id">
+                <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+                <mat-cell  *matCellDef="let element"> {{element.id}} </mat-cell>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="Bond name">
+                <mat-header-cell *matHeaderCellDef> Bond name </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.bond_name}} </mat-cell>
+              </ng-container>
+
+              <!-- Weight Column -->
+              <ng-container matColumnDef="Issuer">
+                <mat-header-cell *matHeaderCellDef> Issuer</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.issuer}} </mat-cell>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="Face value">
+                <mat-header-cell *matHeaderCellDef>Face value</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.face_value}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="Coupon rate">
+                <mat-header-cell *matHeaderCellDef> Coupon rate</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.coupon_rate}} </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="Maturity date">
+                <mat-header-cell *matHeaderCellDef> Maturity date </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.maturity_date}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="Currency">
+                <mat-header-cell *matHeaderCellDef> Currency </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.currency}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="Credit rating">
+                <mat-header-cell *matHeaderCellDef> Credit rating </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.credit_rating}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="Coupon freq">
+                <mat-header-cell *matHeaderCellDef> Coupon freq </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.cupon_freq}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="Bid price">
+                <mat-header-cell *matHeaderCellDef>Bid price </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.bid_price}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="Ask price">
+                <mat-header-cell *matHeaderCellDef>Ask price </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.ask_price}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="Bond volume">
+                <mat-header-cell *matHeaderCellDef> Bond volume </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.bond_volume}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="Total outstanding">
+                <mat-header-cell *matHeaderCellDef>Total outstanding </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.total_outstanding}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="Risk">
+                <mat-header-cell *matHeaderCellDef>Risk</mat-header-cell>
+                <mat-cell *matCellDef="let element"> <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" (click)="get_risk_data($event ,element.id)">Calculate</button></mat-cell>
+              </ng-container>
+              
+
+              <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+           
+          <mat-paginator [pageSizeOptions]="[5,25,100]" showFirstLastButtons></mat-paginator>
+        </div>
+        
+    </div>
+    <div class="px-20 py-4 justify-center text-slate-100">
+        <li>{{risk_store_responce}}</li>
+        <div *ngFor="let item of risk_store_array | keyvalue">
+
+          <li>{{item.value}}</li>
+        </div>
+        
+    </div>
+</div>
+
+
+

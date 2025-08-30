@@ -1,0 +1,132 @@
+        
+    <div class="flex "> 
+        <div class=" w-100 flex-initial" >   
+            <form #userForm="ngForm" (ngSubmit)=" get_yield_data(userForm.value)" class="p-4">
+                <h1 class="px-10 py-4 text-cyan-50">Effect of inflation on nominal yeild</h1>
+                <div class="relative z-0 w-full mb-5 group px-4 py-2">
+                    <input type="number" ngModel  name="bond_id"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <label for="Bond id" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Bond ID</label>
+                </div>
+                <div class="relative z-0 w-full mb-5 group px-4 py-2">
+                    <input type="number" ngModel  name="future_inflation_rate" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <label for="couponRate" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Predicted inflation rate</label>
+                </div>
+
+                <div class="px-40 py-4">
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                </div>
+                
+            </form>
+        </div>
+        <div class=" w-3/4 flex-initial bg-slate-800" >
+            <h2 class="px-10 py-4 text-cyan-50">Effect of inflation on nominal yeild</h2>
+            <div class="px-8 py-2">
+                <canvasjs-chart  [options]="chartOptions3" [styles]="{width: '100%', height:'260px'}" (chartInstance)="getChart3Instance($event)"></canvasjs-chart>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex "> 
+        <div class=" w-100 flex-initial" >   
+            <form #userForm2="ngForm" (ngSubmit)=" get_spread_data(userForm2.value)" class="p-4">
+                <h1 class="px-10 py-4 text-cyan-50">Effect of inflation on yeild to maturity</h1>
+                <div class="relative z-0 w-full mb-5 group px-4 py-2">
+                    <input type="number" ngModel  name="bond_id_spread"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <label for="bond_id_spread" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Bond ID</label>
+                </div>
+                <div class="relative z-0 w-full mb-5 group px-4 py-2">
+                    <input type="number" ngModel  name="future_inflation_rate_spread" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                    <label for="future_inflation_rate_spread" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Predicted inflation rate for spread analysis</label>
+                </div>
+
+                <div class="px-40 py-4">
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                </div>
+                
+            </form>
+        </div>
+        <div class=" w-3/4 flex-initial bg-slate-800" >
+            <h2 class="px-10 py-4 text-cyan-50">Effect of inflation on yeild to maturity</h2>
+            <div class="px-8 py-2">
+                <canvasjs-chart  [options]="chartOptions2" [styles]="{width: '100%', height:'260px'}" (chartInstance)="getChart2Instance($event)"></canvasjs-chart>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<div class="flex "> 
+    <div class=" w-100 flex-initial" >   
+        <form #userForm3="ngForm" (ngSubmit)=" get_spread_bond_data(userForm3.value)" class="p-4">
+            <h1 class="px-10 py-4 text-cyan-50">Spread analysis bond ytm vs treasury yeild</h1>
+            <div class="relative z-0 w-full mb-5 group px-4 py-2">
+                <input type="number" ngModel  name="bond_id_spread"  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                <label for="bond_id_spread" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Bond ID</label>
+            </div>
+            <div class="px-40 py-4">
+                <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+            </div>
+            
+        </form>
+    </div>
+    <div class=" w-3/4 flex-initial bg-slate-800" >
+        <h2 class="px-10 py-4 text-cyan-50">Spread analysis bond ytm vs treasury yeild</h2>
+        <div class="px-8 py-2">
+            <canvasjs-chart  [options]="chartOptions1" [styles]="{width: '100%', height:'260px'}" (chartInstance)="getChart1Instance($event)"></canvasjs-chart>
+        </div>
+    </div>
+</div>
+
+<div class="m-0 bg-slate-800" >
+    <h2 class="px-10 py-4 text-cyan-50">Inflation Index</h2>
+    <div class="px-8 py-2">
+        <canvasjs-chart  [options]="chartOptions4" [styles]="{width: '100%', height:'260px'}" (chartInstance)="getChart4Instance($event)"></canvasjs-chart>
+    </div>
+</div>
+
+<div class="bg-slate-800">
+    <div class="example-container mat-elevation-z8 p-3">
+        
+        <div class="bg-slate-800 p-10">
+          <div fxLayout fxLayoutAlign="center center">
+            <mat-form-field fxFlex="40%">
+              <input matInput type="text" search (keyup)="doFilter($event)" placeholder="Filter">
+            </mat-form-field>
+          </div>
+            <mat-table #table [dataSource]="dataSource">
+
+              <!--- Note that these columns can be defined in any order.
+                    The actual rendered columns are set as a property on the row definition" -->
+
+              <!-- Position Column -->
+              <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="year">
+                <mat-header-cell *matHeaderCellDef> Year </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.year}} </mat-cell>
+              </ng-container>
+
+              <!-- Weight Column -->
+              <ng-container matColumnDef="period">
+                <mat-header-cell *matHeaderCellDef> Period </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.period}} </mat-cell>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="value">
+                <mat-header-cell *matHeaderCellDef>Value</mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.value}} </mat-cell>
+              </ng-container>
+              <mat-header-row  *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
+          <mat-paginator [pageSizeOptions]="[5,25,100]" showFirstLastButtons></mat-paginator>
+        </div>
+        
+    </div>
+</div>
